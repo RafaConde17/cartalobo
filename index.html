@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carta Lunar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cartalunar.css">
+</head>
+<body>
+
+<!-- 🌌 Fondo estrellas -->
+<div id="estrellas-fondo"></div>
+
+<!-- 📸 Popup -->
+<div class="popup" id="popup">
+    <span class="cerrar" onclick="cerrarPopup()">✖</span>
+    <img id="imgPopup" src="">
+</div>
+
+<!-- 🌙 Luna -->
+<div class="luna" onclick="abrirLuna()">
+    <div class="mitad izquierda"></div>
+    <div class="mitad derecha"></div>
+</div>
+
+<img src="lobo.png" class="lobo">
+
+<!-- 📸 Galería -->
+<div class="galeria">
+    <img src="foto1.png">
+    <img src="foto2.png">
+    <img src="foto3.png">
+</div>
+
+<!-- 💌 Carta -->
+<div class="carta" id="carta">
+    <p id="textoCarta"></p>
+</div>
+
+<!-- 💖 Texto -->
+<div class="contenido">
+    <h1>Bajo la misma luna 🌙</h1>
+    <p>No importa la distancia… con tal de sentirnos unidos...</p>
+    <div class="corazon">❤️</div>
+</div>
+
+<!-- 🎵 Música -->
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🔊 Sonido -->
+<audio id="sonido">
+    <source src="open.mp3" type="audio/mpeg">
+</audio>
+
+<script src="cartalunar.js"></script>
+</body>
+</html>

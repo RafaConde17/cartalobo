@@ -1,0 +1,258 @@
+/* 🌌 RESET */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
+    
+}
+body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* 🌌 FONDO */
+body {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #050816, #0b0f2b);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    text-align: center;
+     overflow-x: hidden;
+    overflow-y: hidden; /* 🔥 evita saltos verticales */
+}
+
+/* 🌙 LUNA */
+.luna {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle, #fff, #ccc);
+    box-shadow: 0 0 60px white;
+    z-index: 5;
+}
+
+/* 🐺 LOBO */
+.lobo {
+    position: absolute;
+    top: 205px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+    animation: flotarLobo 4s ease-in-out infinite;
+}
+
+@keyframes flotarLobo {
+    0%,100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -10px); }
+}
+
+/* ✨ ESTRELLAS */
+.estrellas-fondo {
+    position: fixed;   /* 🔥 clave */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+@keyframes parpadeo {
+    0%,100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* 🌠 FUGACES */
+.fugaz {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 15px white, 0 0 35px white;
+    animation: diagonal 1.5s linear forwards;
+}
+
+@keyframes diagonal {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(400px, 400px); opacity: 0; }
+}
+
+/* 📸 GALERÍA */
+.galeria {
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+
+    z-index: 10; /* 🔥 más alto */
+}
+
+.galeria.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 📸 IMÁGENES */
+.galeria img {
+    width: 130px;
+    height: 130px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 15px white;
+
+    opacity: 0;
+    transform: translateY(40px);
+
+    animation: aparecer 1.5s ease forwards, flotar 6s ease-in-out infinite;
+}
+
+/* delays */
+.galeria img:nth-child(1) { animation-delay: 0.5s, 0.5s; }
+.galeria img:nth-child(2) { animation-delay: 1s, 1s; }
+.galeria img:nth-child(3) { animation-delay: 1.5s, 1.5s; }
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flotar {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* 💌 CARTA */
+.carta {
+    position: absolute;
+    bottom: 160px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+
+    width: 320px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    transition: all 0.6s ease;
+
+    z-index: 15;
+}
+
+.carta.mostrar {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 💖 CONTENIDO */
+.contenido {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+/* 📸 POPUP */
+.popup {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.95);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+
+    z-index: 9999; /* 🔥 máximo nivel */
+}
+
+.popup.activo {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 20px;
+    box-shadow: 0 0 25px white;
+    animation: zoom 0.4s ease;
+}
+
+@keyframes zoom {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 480px) {
+
+    .galeria {
+         bottom: 120px;
+      flex-direction: row;      /* 🔥 horizontal */
+        justify-content: center;  /* centra las imágenes */
+        align-items: center;
+        flex-wrap: wrap;          /* permite que bajen si no caben */
+        gap: 10px;
+    }
+
+    .galeria img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .carta {
+        width: 90%;
+        bottom: 140px;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+html, body {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+
+}
